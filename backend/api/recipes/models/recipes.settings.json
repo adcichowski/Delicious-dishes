@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recipes",
+  "info": {
+    "name": "Recipes"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Ingredients": {
+      "type": "json",
+      "required": true
+    },
+    "Prize": {
+      "type": "integer"
+    },
+    "NumberPortion": {
+      "type": "integer"
+    }
+  }
+}
