@@ -17,3 +17,33 @@ a {
 * {
   box-sizing: border-box;
 }
+.bg-dishes {
+  position: relative;
+  overflow: hidden;
+}
+.bg-dishes::after {
+  left: 0;
+  top: 0;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .bg-dishes::after {
+    content: "";
+    position: absolute;
+    width: 115%;
+    height: 100%;
+    background: url("../public/bg-dishes.png") no-repeat center center/cover;
+    z-index: -1;
+  }
+}
+@media screen and (min-width: 769px) {
+  .bg-dishes::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: url("../public/bg-dishes.png") no-repeat right center / cover;
+    z-index: -1;
+  }
+}
