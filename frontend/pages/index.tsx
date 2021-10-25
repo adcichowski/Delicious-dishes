@@ -24,7 +24,13 @@ const Home: NextPage = () => {
           <div className="w-96 h-96 md:w-4/6 md:h-auto">
             <HeaderImg />
           </div>
-          <Button className={"w-28 text-xl mt-5"}>Start</Button>
+          <Button
+            element="a"
+            href="/login"
+            className={"w-28 h-12 text-center text-2xl mt-5"}
+          >
+            Start
+          </Button>
         </div>
       </header>
     </div>
