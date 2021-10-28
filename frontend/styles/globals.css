@@ -18,32 +18,34 @@ a {
   box-sizing: border-box;
 }
 .bg-dishes {
-  position: relative;
-  overflow: hidden;
+  position: absolute;
+  width: clamp(40rem, 100%, 50rem);
+  height: auto;
+  z-index: -1;
 }
-.bg-dishes::after {
-  left: 0;
-  top: 0;
-  position: relative;
+.girl-size {
+  width: clamp(28rem, calc(70vw - 10rem), 35rem);
+  height: auto;
+  object-fit: fill;
 }
-
-@media screen and (max-width: 768px) {
-  .bg-dishes::after {
-    content: "";
-    position: absolute;
-    width: 115%;
-    height: 100%;
-    background: url("../public/bg-dishes.png") no-repeat center center/cover;
-    z-index: -1;
+@media only screen and (max-width: 600px) {
+  .bg-dishes {
+    left: -100px;
   }
 }
-@media screen and (min-width: 769px) {
-  .bg-dishes::after {
-    content: "";
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    background: url("../public/bg-dishes.png") no-repeat right center / cover;
-    z-index: -1;
+.spinner {
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+
+  & .path {
+    stroke: hsl(210, 70, 75);
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
   }
 }

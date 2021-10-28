@@ -1,36 +1,42 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import React from "react";
-import { Button } from "../components/atoms/Button";
-import HeaderImg from "../public/girl-with-fruits.svg";
+import { HeaderSVG } from "../components/atoms/HeaderSVG";
+import { Login } from "../components/Login";
+import BgDishes from "/public/bg-dishes.svg";
 const Home: NextPage = () => {
+  const [getLoginView, setLoginView] = React.useState("Start");
+  const handleLoginView = () => {
+    setLoginView("Process");
+    setTimeout(() => {
+      console.log("set login");
+      setLoginView("Login");
+    }, 2000);
+  };
   return (
-    <div className="flex flex-col max-w-full bg-dishes align-center justify-center">
+    <div className="flex flex-col max-w-full align-center justify-center overflow-hidden relative">
+      <div className="bg-dishes">
+        <BgDishes />
+      </div>
+
       <Head>
         <title>Delicious Dishes - przepisy na smak</title>
         <meta name="description" content="Delicious Dishes" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="h-screen flex flex-col justify-center items-center md:grid md:grid-cols-2">
-        <h1 className="block text-center bg-dishes-dekstop content-center font-semibold">
-          <div className="bg-dishes-desktop">
-            <p className="md:text-6xl text-3xl">Delicious</p>
-            <p className="md:text-9xl text-6xl">Dishes</p>
+        <h1 className="block text-center content-center font-semibold">
+          <div>
+            <div className="md:text-6xl text-3xl">Delicious</div>
+            <div className="md:text-9xl text-6xl">Dishes</div>
           </div>
         </h1>
-
-        <div className="grid place-items-center">
-          <div className="w-96 h-96 md:w-4/6 md:h-auto">
-            <HeaderImg />
-          </div>
-          <Button
-            element="a"
-            href="/login"
-            className={"w-28 h-12 text-center text-2xl mt-5"}
-          >
-            Start
-          </Button>
+        <div>
+          {getLoginView !== "Login" ? (
+            <HeaderSVG loginView={getLoginView} goToLogin={handleLoginView} />
+          ) : (
+            <Login />
+          )}
         </div>
       </header>
     </div>

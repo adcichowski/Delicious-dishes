@@ -26,6 +26,11 @@ module.exports = {
     variants: {
       extend: {},
     },
+    extend: {
+      animation: {
+        "pulse-slow": "bounce 3s linear 2",
+      },
+    },
     plugins: [],
   },
 };
