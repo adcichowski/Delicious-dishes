@@ -17,10 +17,21 @@ const HeaderSVG = ({
       <Button
         element="button"
         onClick={goToLogin}
-        className={"w-24 text-center text-xl mt-5 ``"}
+        className={"min-w-24 text-xl mt-5 text-white-100"}
       >
-        {loginView === "Process" && <Spinner />}
-        {loginView}
+        <span>
+          {loginView === "Process" && (
+            <svg
+              className="inline animate-spin w-8 stroke-1 mr-1 stroke-current"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5" />
+            </svg>
+          )}
+          {loginView}
+        </span>
       </Button>
     </div>
   );

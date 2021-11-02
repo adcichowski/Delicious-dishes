@@ -11,11 +11,15 @@ module.exports = {
         200: "#88C999",
         300: "#74B084",
         400: "#699F77",
+        500: "#467B54",
       },
       white: {
         100: "#F8F8F8",
         200: "#F2F2F2",
         300: "#E6E6E6",
+      },
+      black: {
+        900: "#2C2C2C",
       },
     },
     screens: {
@@ -28,9 +32,10 @@ module.exports = {
     },
     extend: {
       animation: {
-        "pulse-slow": "bounce 3s linear 2",
+        "pulse-slow": "bounce 1s ease-in infinite",
       },
     },
     plugins: [],
+    plugins: [require("@tailwindcss/forms")],
   },
 };

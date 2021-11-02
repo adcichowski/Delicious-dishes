@@ -1,21 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { HeaderSVG } from "../components/atoms/HeaderSVG";
-import { Login } from "../components/Login";
+import { Login } from "../components/organisms/Login";
 import BgDishes from "/public/bg-dishes.svg";
+import { useLoginView } from "../hooks/useLoginView";
 const Home: NextPage = () => {
-  const [getLoginView, setLoginView] = React.useState("Start");
-  const handleLoginView = () => {
-    setLoginView("Process");
-    setTimeout(() => {
-      console.log("set login");
-      setLoginView("Login");
-    }, 2000);
-  };
+  const { el, handleLoginView, getLoginView } = useLoginView();
   return (
-    <div className="flex flex-col max-w-full align-center justify-center overflow-hidden relative">
-      <div className="bg-dishes">
+    <div className="grid overflow-hidden relative self-center">
+      <div ref={el} className="bg-dishes">
         <BgDishes />
       </div>
 
@@ -24,19 +18,19 @@ const Home: NextPage = () => {
         <meta name="description" content="Delicious Dishes" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="h-screen flex flex-col justify-center items-center md:grid md:grid-cols-2">
-        <h1 className="block text-center content-center font-semibold">
-          <div>
-            <div className="md:text-6xl text-3xl">Delicious</div>
-            <div className="md:text-9xl text-6xl">Dishes</div>
-          </div>
-        </h1>
+      <header className="h-screen grid justify-items-center content-center md:grid-cols-2">
         <div>
           {getLoginView !== "Login" ? (
             <HeaderSVG loginView={getLoginView} goToLogin={handleLoginView} />
           ) : (
             <Login />
           )}
+        </div>
+        <div className="self-end md:self-center mt-8">
+          <h1 className="text-center font-semibold">
+            <div className="md:text-6xl text-4xl">Delicious</div>
+            <div className="md:text-9xl text-7xl">Dishes</div>
+          </h1>
         </div>
       </header>
     </div>

@@ -50,7 +50,7 @@ export default class MyDocument extends Document {
             href="/fonts/hind-light-webfont.woff"
           />
         </Head>
-        <body>
+        <body className="text-black-900 max-w-screen-xl my-0 mx-auto">
           <Main />
           <NextScript />
         </body>
