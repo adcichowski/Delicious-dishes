@@ -26,7 +26,7 @@ export function Login() {
             href="#"
             className="bg-white-100 inline-block align-baseline border-2 py-2 px-4 rounded border-green-500 text-green-500 font-medium"
           >
-            Forgot Password?
+            Create account
           </Button>
         </div>
       </form>

@@ -19,8 +19,8 @@ a {
 }
 .bg-dishes {
   position: absolute;
-  width: clamp(45rem, 100%, 55rem);
-  height: auto;
+  width: 130%;
+  right: -17%;
   z-index: -1;
 }
 .girl-size {
@@ -30,9 +30,17 @@ a {
 }
 @media only screen and (min-width: 840px) {
   .bg-dishes {
-    width: clamp(40rem, 100%, 45rem);
-    top: 50%;
-    left: 75%;
+    max-width: 50rem;
+    top: 60%;
+    right: -25%;
     transform: translate(-50%, -50%);
+  }
+}
+@media only screen and (min-width: 1420px) {
+  .bg-dots {
+    background-image: url("../public/headerDots.png");
+    background-repeat: no-repeat;
+    background-size: 52%;
+    background-position: -25% center;
   }
 }

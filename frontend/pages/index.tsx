@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Delicious Dishes" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className="h-screen grid justify-items-center content-center md:grid-cols-2">
+      <header className="h-screen grid justify-items-center content-center md:grid-cols-2 bg-dots">
         <div>
           {getLoginView !== "Login" ? (
             <HeaderSVG loginView={getLoginView} goToLogin={handleLoginView} />
