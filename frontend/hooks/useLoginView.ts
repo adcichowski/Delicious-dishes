@@ -8,7 +8,7 @@ export function useLoginView() {
     setLoginView("Process");
     setTimeout(() => {
       setLoginView("Login");
-    }, 2500);
+    }, 1500);
   };
   useEffect(() => {
     if (!el.current) return;

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import React, { useEffect, useRef } from "react";
-import { HeaderSVG } from "../components/atoms/HeaderSVG";
+import { HeaderSVG } from "../components/organisms/HeaderSVG";
 import { Login } from "../components/organisms/Login";
 import BgDishes from "/public/bg-dishes.svg";
 import { useLoginView } from "../hooks/useLoginView";
