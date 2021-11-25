@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { LoginProvider } from "../hooks/context/loginContext";
+import { LoginProvider } from "../hooks/context/LoginContext";
 console.log(process.env.NODE_ENV);
 function MyApp({ Component, pageProps }: AppProps) {
   return (

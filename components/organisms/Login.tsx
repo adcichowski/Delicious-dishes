@@ -4,7 +4,7 @@ import { Button } from "../atoms/Button";
 import { Input } from "../atoms/Input";
 import { createClient } from "@supabase/supabase-js";
 import { useSign } from "../../hooks/useSign";
-import { useLoginContext } from "../../hooks/context/loginContext";
+import { useLoginContext } from "../../hooks/context/LoginContext";
 
 export function Login() {
   const [isSingIn, setIsSingIn] = useState(true);
