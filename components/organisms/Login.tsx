@@ -4,11 +4,13 @@ import { Button } from "../atoms/Button";
 import { Input } from "../atoms/Input";
 import { createClient } from "@supabase/supabase-js";
 import { useSign } from "../../hooks/useSign";
+import { useLoginContext } from "../../hooks/context/loginContext";
 
 export function Login() {
   const [isSingIn, setIsSingIn] = useState(true);
   const { formik } = useSign(isSingIn);
-  const TypeButton = () =>
+  const { setUser } = useLoginContext();
+  const FormButton = () =>
     isSingIn ? (
       <Button
         element="button"
@@ -53,7 +55,7 @@ export function Login() {
           {formik?.errors?.password}
         </div>
         <div className="flex items-center justify-between">
-          <TypeButton />
+          <FormButton />
           <Button
             element="a"
             href="#"
