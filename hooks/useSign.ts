@@ -29,12 +29,9 @@ export function useSign(type: boolean) {
     },
     validate,
     onSubmit: async () => {
-      if (type) {
-        await supabase.auth.signIn(formik.values);
-      }
-      if (!type) {
-        await supabase.auth.signUp(formik.values);
-      }
+      type
+        ? await supabase.auth.signIn(formik.values)
+        : await supabase.auth.signUp(formik.values);
     },
   });
   return { formik };
