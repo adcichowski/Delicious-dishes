@@ -30,9 +30,9 @@ a {
 }
 @media only screen and (min-width: 840px) {
   .bg-dishes {
-    max-width: 50rem;
-    top: 60%;
-    right: -25%;
+    max-width: 40rem;
+    top: 52%;
+    right: -15%;
     transform: translate(-50%, -50%);
   }
 }
@@ -41,6 +41,6 @@ a {
     background-image: url("../public/headerDots.png");
     background-repeat: no-repeat;
     background-size: 52%;
-    background-position: -25% center;
+    background-position: 0 center;
   }
 }

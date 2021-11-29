@@ -12,7 +12,6 @@ export function useLoginView() {
   };
   useEffect(() => {
     if (!el.current) return;
-    console.log(el);
     const { current } = el;
     const dishesEl = current.querySelector("[data-name='dishes']");
     dishesEl?.classList.add("animate-pulse");
