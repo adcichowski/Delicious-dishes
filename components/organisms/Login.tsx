@@ -5,6 +5,7 @@ import { Input } from "../atoms/Input";
 import { createClient } from "@supabase/supabase-js";
 import { useSign } from "../../hooks/useSign";
 import { useLoginContext } from "../../hooks/context/LoginContext";
+import Link from "next/link";
 
 export function Login() {
   const [isSingIn, setIsSingIn] = useState(true);
@@ -12,7 +13,9 @@ export function Login() {
   const { setUser } = useLoginContext();
   return (
     <div className="grid w-96 justify-self-center">
-      <h2 className="text-5xl text-center mb-4 font-medium">Login</h2>
+      <h2 className="text-6xl text-center mb-4 font-medium">
+        {isSingIn ? "Login" : "Register"}
+      </h2>
       <form onSubmit={formik.handleSubmit} className="w-92">
         <div className="mb-4">
           <Input
@@ -29,18 +32,20 @@ export function Login() {
           <Input
             id="password"
             name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
             type="password"
             labelText="Password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
           />
           {formik?.errors?.password}
           {isSingIn && (
             <p>
-              If you have already account, just{" "}
-              <a className="text-green-400 font-bold underline text-2xl cursor-pointer">
-                Sign In
-              </a>
+              If you have already account, just
+              <Link href="/login">
+                <a className="underline text-green-400 font-bold underline text-xl cursor-pointer">
+                  Sign In
+                </a>
+              </Link>
             </p>
           )}
         </div>
@@ -48,14 +53,14 @@ export function Login() {
           <Button className="text-white-100 font-medium" type="submit">
             {isSingIn ? "Sign In" : "Register"}
           </Button>
-          {isSingIn && (
-            <Button
-              onClick={() => setIsSingIn(!isSingIn)}
-              className="bg-white-100 inline-block align-baseline border-2 py-2 px-4 rounded border-green-500 text-green-500 font-medium"
-            >
-              Create account
-            </Button>
-          )}
+
+          <Button
+            onClick={() => setIsSingIn(!isSingIn)}
+            type="button"
+            className="bg-white-100 inline-block align-baseline border-2 py-2 px-4 rounded border-green-500 text-green-500 font-medium"
+          >
+            {isSingIn ? "Create account" : "Just Login In"}
+          </Button>
         </div>
       </form>
     </div>

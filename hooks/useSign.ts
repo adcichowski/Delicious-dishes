@@ -1,8 +1,9 @@
 import { useFormik } from "formik";
 import React from "react";
 import { supabase } from "../lib/supabase/config";
+import { accessToApp } from "../lib/supabase/utils";
 
-export function useSign(type: boolean) {
+export function useSign(isLoginAction: boolean) {
   const validate = (values: { email: string; password: string }) => {
     const errors: { email?: string; password?: string } = {};
     if (!values.password) {
@@ -29,9 +30,14 @@ export function useSign(type: boolean) {
     },
     validate,
     onSubmit: async () => {
-      type
-        ? await supabase.auth.signIn(formik.values)
-        : await supabase.auth.signUp(formik.values);
+      try {
+        await accessToApp({
+          typeAccess: isLoginAction ? "login" : "register",
+          user: formik.values,
+        });
+      } catch (e) {
+        console.log(e);
+      }
     },
   });
   return { formik };
