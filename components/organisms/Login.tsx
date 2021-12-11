@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { Button } from "../atoms/Button";
-import { Input } from "../atoms/Input";
+import { Button } from "components/atoms/Button";
+import { Input } from "components/atoms/Input";
 import { createClient } from "@supabase/supabase-js";
-import { useSign } from "../../hooks/useSign";
-import { useLoginContext } from "../../hooks/context/LoginContext";
+import { useSign } from "hooks/useSign";
+import { useLoginContext } from "context/LoginContext";
 import Link from "next/link";
 
 export function Login() {
@@ -17,38 +17,36 @@ export function Login() {
         {isSingIn ? "Login" : "Register"}
       </h2>
       <form onSubmit={formik.handleSubmit} className="w-92">
-        <div className="mb-4">
-          <Input
-            labelText="Email"
-            id="email"
-            name="email"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-          />
-          {formik?.errors?.email}
-        </div>
-        <div className="mb-6">
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            labelText="Password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-          />
-          {formik?.errors?.password}
-          {isSingIn && (
-            <p>
-              If you have already account, just
-              <Link href="/login">
-                <a className="underline text-green-400 font-bold underline text-xl cursor-pointer">
-                  Sign In
-                </a>
-              </Link>
-            </p>
-          )}
-        </div>
+        <Input
+          labelText="Email"
+          id="email"
+          name="email"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.email}
+        />
+        {formik?.errors?.email}
+
+        <Input
+          id="password"
+          name="password"
+          type="password"
+          labelText="Password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+        />
+        {formik?.errors?.password}
+        {isSingIn && (
+          <p>
+            If you have already account, just
+            <Link href="/login">
+              <a className="underline text-green-400 font-bold underline text-xl cursor-pointer">
+                Sign In
+              </a>
+            </Link>
+          </p>
+        )}
+
         <div className="flex items-center justify-between">
           <Button className="text-white-100 font-medium" type="submit">
             {isSingIn ? "Sign In" : "Register"}

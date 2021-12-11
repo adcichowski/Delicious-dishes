@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "../atoms/Button";
-import HeaderImg from "/public/girl-with-fruits.svg";
+import { Button } from "components/atoms/Button";
+import HeaderImg from "public/girl-with-fruits.svg";
 
 const HeaderSVG = ({
   goToLogin,
@@ -26,7 +26,7 @@ const HeaderSVG = ({
         <HeaderImg />
       </div>
       <Button
-        element="button"
+        type="button"
         onClick={goToLogin}
         className={"min-w-30 text-xl mt-5 text-white-100"}
       >

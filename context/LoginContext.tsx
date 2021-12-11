@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { supabase } from "../../lib/supabase/config";
+import { supabase } from "../lib/supabase/config";
 interface IUser {
   readonly isLogin: boolean;
   readonly email: string;

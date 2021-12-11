@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import React from "react";
-import { supabase } from "../lib/supabase/config";
-import { accessToApp } from "../lib/supabase/utils";
+import { supabase } from "lib/supabase/config";
+import { accessToApp } from "lib/supabase/utils";
 
 export function useSign(isLoginAction: boolean) {
   const validate = (values: { email: string; password: string }) => {
@@ -28,8 +28,8 @@ export function useSign(isLoginAction: boolean) {
       email: "",
       password: "",
     },
-    validate,
     onSubmit: async () => {
+      console.log(validate(formik.values), formik);
       try {
         await accessToApp({
           typeAccess: isLoginAction ? "login" : "register",
