@@ -1,10 +1,16 @@
-import type { NextPage } from "next";
+import { HeaderSVG } from "components/organisms/HeaderSVG";
+import { useLoginView } from "hooks/useLoginView";
 import Head from "next/head";
 import React from "react";
-import { HeaderSVG } from "../components/organisms/HeaderSVG";
 import BgDishes from "/public/bg-dishes.svg";
-import { useLoginView } from "../hooks/useLoginView";
-const Home: NextPage = () => {
+
+export default function AuthView({
+  title,
+  isFormView,
+}: {
+  title: string;
+  isFormView: boolean;
+}) {
   const { el, handleLoginView, getLoginView } = useLoginView();
   return (
     <div className="grid overflow-hidden relative self-center">
@@ -13,14 +19,15 @@ const Home: NextPage = () => {
       </div>
 
       <Head>
-        <title>Delicious Dishes - przepisy na smak</title>
+        <title>{title}</title>
         <meta name="description" content="Delicious Dishes" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="h-screen grid justify-items-center content-center md:grid-cols-2 bg-dots">
-        <div>
-          <HeaderSVG loginView={getLoginView} goToLogin={handleLoginView} />
-        </div>
+        {!isFormView && (
+          <div>
+            <HeaderSVG loginView={getLoginView} goToLogin={handleLoginView} />
+          </div>
+        )}
         <div className="self-end md:self-center mt-8">
           <h1 className="text-center font-semibold">
             <div className="md:text-6xl text-4xl">Delicious</div>
@@ -30,6 +37,4 @@ const Home: NextPage = () => {
       </header>
     </div>
   );
-};
-
-export default Home;
+}

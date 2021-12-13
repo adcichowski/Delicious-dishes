@@ -7,19 +7,15 @@ import { useSign } from "hooks/useSign";
 import { useLoginContext } from "context/LoginContext";
 import Link from "next/link";
 
-export function Login() {
-  const [isSingIn, setIsSingIn] = useState(true);
-  const { formik } = useSign(isSingIn);
+export function FormAuthView({ type }: { type: "Login" | "Register" }) {
+  const { formik } = useSign(type === "Login");
   const { setUser } = useLoginContext();
   return (
     <div className="grid w-96 justify-self-center">
-      <h2 className="text-6xl text-center mb-4 font-medium">
-        {isSingIn ? "Login" : "Register"}
-      </h2>
+      <h2 className="text-6xl text-center mb-4 font-medium">{type}</h2>
       <form onSubmit={formik.handleSubmit} className="w-92">
         <Input
           labelText="Email"
-          id="email"
           name="email"
           type="text"
           onChange={formik.handleChange}
@@ -28,7 +24,6 @@ export function Login() {
         {formik?.errors?.email}
 
         <Input
-          id="password"
           name="password"
           type="password"
           labelText="Password"
@@ -36,10 +31,10 @@ export function Login() {
           onChange={formik.handleChange}
         />
         {formik?.errors?.password}
-        {isSingIn && (
+        {!!(type === "Login") && (
           <p>
             If you have already account, just
-            <Link href="/login">
+            <Link href="/register">
               <a className="underline text-green-400 font-bold underline text-xl cursor-pointer">
                 Sign In
               </a>
@@ -47,21 +42,16 @@ export function Login() {
           </p>
         )}
 
-        <div className="flex items-center justify-between">
-          <Button className="text-white-100 font-medium" type="submit">
-            {isSingIn ? "Sign In" : "Register"}
-          </Button>
-
+        <div className="flex items-center justify-center">
           <Button
-            onClick={() => setIsSingIn(!isSingIn)}
-            type="button"
-            className="bg-white-100 inline-block align-baseline border-2 py-2 px-4 rounded border-green-500 text-green-500 font-medium"
+            className="text-white-100 self-center font-medium"
+            type="submit"
           >
-            {isSingIn ? "Create account" : "Just Login In"}
+            {type}
           </Button>
         </div>
       </form>
     </div>
   );
 }
-Login.displayName = "Login";
+FormAuthView.displayName = "LoginView";

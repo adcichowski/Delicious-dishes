@@ -49,6 +49,7 @@ export default class MyDocument extends Document {
             crossOrigin="anonymous"
             href="/fonts/hind-light-webfont.woff"
           />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <body className="text-black-900 max-w-screen-xl my-0 mx-auto">
           <Main />

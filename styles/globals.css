@@ -4,7 +4,6 @@
 
 html,
 body {
-  width: 100%;
   padding: 0;
   margin: 0;
   font-family: Hind, sans-serif;
@@ -20,14 +19,19 @@ a {
 }
 .bg-dishes {
   position: absolute;
-  width: 110%;
-  max-width: 40rem;
+  width: 40%;
   z-index: -1;
 }
 .girl-size {
-  width: clamp(28rem, calc(70vw - 10rem), 35rem);
+  width: clamp(20rem, calc(70vw - 10rem), 35rem);
   height: auto;
   object-fit: fill;
+}
+@media only screen and (max-width: 839px) {
+  .bg-dishes {
+    width: 100%;
+    transform: translate(-50%, 20%);
+  }
 }
 @media only screen and (min-width: 840px) {
   .bg-dishes {
@@ -36,7 +40,7 @@ a {
     transform: translate(-50%, -50%);
   }
 }
-@media only screen and (min-width: 1320px) {
+@media only screen and (min-width: 840px) {
   .bg-dots {
     background-image: url("../public/headerDots.png");
     background-repeat: no-repeat;
