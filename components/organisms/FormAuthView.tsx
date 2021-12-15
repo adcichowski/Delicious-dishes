@@ -7,7 +7,7 @@ import { useSign } from "hooks/useSign";
 import { useLoginContext } from "context/LoginContext";
 import Link from "next/link";
 
-export function FormAuthView({ type }: { type: "Login" | "Register" }) {
+export function FormAuthView({ type }: { type: string }) {
   const { formik } = useSign(type === "Login");
   const { setUser } = useLoginContext();
   return (

@@ -1,7 +1,10 @@
+import { FormAuthView } from "components/organisms/FormAuthView";
 import { HeaderSVG } from "components/organisms/HeaderSVG";
 import { useLoginView } from "hooks/useLoginView";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import React from "react";
+import { capFirstLetter } from "utils/utils";
 import BgDishes from "/public/bg-dishes.svg";
 
 export default function AuthView({
@@ -11,6 +14,7 @@ export default function AuthView({
   title: string;
   isFormView: boolean;
 }) {
+  const router = useRouter();
   const { el, handleLoginView, getLoginView } = useLoginView();
   return (
     <div className="grid overflow-hidden relative self-center">
@@ -23,7 +27,9 @@ export default function AuthView({
         <meta name="description" content="Delicious Dishes" />
       </Head>
       <header className="h-screen grid justify-items-center content-center md:grid-cols-2 bg-dots">
-        {!isFormView && (
+        {isFormView ? (
+          <FormAuthView type={capFirstLetter(router.asPath.split("/")[1])} />
+        ) : (
           <div>
             <HeaderSVG loginView={getLoginView} goToLogin={handleLoginView} />
           </div>
