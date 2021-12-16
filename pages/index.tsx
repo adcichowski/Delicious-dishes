@@ -13,7 +13,7 @@ const Home: NextPage = () => {
       </div>
 
       <Head>
-        <title>Delicious Dishes - przepisy na smak</title>
+        <title>Delicious Dishes - recipes and taste</title>
         <meta name="description" content="Delicious Dishes" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

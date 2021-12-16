@@ -51,7 +51,7 @@ export default class MyDocument extends Document {
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <body className="text-black-900 max-w-screen-xl my-0 mx-auto">
+        <body className="text-black-900 max-w-screen-xl text-base my-0 mx-auto">
           <Main />
           <NextScript />
         </body>

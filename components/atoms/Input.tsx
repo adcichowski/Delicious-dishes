@@ -3,13 +3,13 @@ export function Input({
   ...props
 }: JSX.IntrinsicElements["input"] & { labelText: string }) {
   return (
-    <label className="block text-gray-700 text-sm font-bold mb-2">
+    <label className="block grid mx-2 text-gray-700 text-base font-bold mb-2">
       {labelText}
       <input
         id={props.name}
         name={props.name}
         {...props}
-        className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 focus:ring-green-300 focus:outline-none focus:border-1 focus:border-green-300 focus:ring-4 focus:ring-opacity-50 ${props.className}`}
+        className={`shadow appearance-none border rounded w-100 p-2 mb-2 text-gray-700 focus:ring-green-300 focus:outline-none focus:border-1 focus:border-green-300 focus:ring-4 focus:ring-opacity-50 ${props.className}`}
       />
     </label>
   );

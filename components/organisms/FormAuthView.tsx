@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button } from "components/atoms/Button";
 import { Input } from "components/atoms/Input";
 import { createClient } from "@supabase/supabase-js";
@@ -8,12 +8,13 @@ import { useLoginContext } from "context/LoginContext";
 import Link from "next/link";
 
 export function FormAuthView({ type }: { type: string }) {
-  const { formik } = useSign(type === "Login");
+  const isLoginForm = useMemo(() => type === "Login", []);
+  const { formik } = useSign(isLoginForm);
   const { setUser } = useLoginContext();
   return (
-    <div className="grid w-96 justify-self-center">
+    <div className="max-w-lg w-full">
       <h2 className="text-6xl text-center mb-4 font-medium">{type}</h2>
-      <form onSubmit={formik.handleSubmit} className="w-92">
+      <form onSubmit={formik.handleSubmit} className="w-full">
         <Input
           labelText="Email"
           name="email"
@@ -31,18 +32,16 @@ export function FormAuthView({ type }: { type: string }) {
           onChange={formik.handleChange}
         />
         {formik?.errors?.password}
-        {!!(type === "Login") && (
-          <p>
-            If you have already account, just
-            <Link href="/register">
-              <a className="underline text-green-400 font-bold underline text-xl cursor-pointer">
-                Sign In
-              </a>
-            </Link>
-          </p>
-        )}
+        <p>
+          If you have already account, just
+          <Link href={isLoginForm ? "/register" : "/login"}>
+            <a className="underline text-green-400 font-bold underline text-xl ml-1 cursor-pointer">
+              {isLoginForm ? "Register" : "Sign In"}
+            </a>
+          </Link>
+        </p>
 
-        <div className="flex items-center justify-center">
+        <div className="flex">
           <Button
             className="text-white-100 self-center font-medium"
             type="submit"
