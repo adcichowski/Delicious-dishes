@@ -32,6 +32,15 @@ export function FormAuthView({ type }: { type: string }) {
           onChange={formik.handleChange}
         />
         {formik?.errors?.password}
+        {isLoginForm ? null : (
+          <Input
+            name="Repeat password"
+            type="password"
+            labelText="Repeat password"
+            value={formik.values.repeatPassword}
+            onChange={formik.handleChange}
+          />
+        )}
         <p>
           If you have already account, just
           <Link href={isLoginForm ? "/register" : "/login"}>
@@ -53,4 +62,4 @@ export function FormAuthView({ type }: { type: string }) {
     </div>
   );
 }
-FormAuthView.displayName = "LoginView";
+FormAuthView.displayName = "FormAuthView";

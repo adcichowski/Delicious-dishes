@@ -3,9 +3,27 @@ import React from "react";
 import { supabase } from "lib/supabase/config";
 import { accessToApp } from "lib/supabase/utils";
 
+const setValidation = {
+  email: {
+    isRequired: true,
+  },
+  password: {
+    isRequired: true,
+  },
+  repeatPassword: (isLoginAction: boolean) => {
+    if (!isLoginAction)
+      return {
+        isRequired: true,
+      };
+  },
+};
+interface FormikInputs {
+  email: string;
+  password: string;
+  reapeatPassword?: string;
+}
 export function useSign(isLoginAction: boolean) {
-  const validate = (values: { email: string; password: string }) => {
-    const errors: { email?: string; password?: string } = {};
+  const validate = (values: FormikInputs, errors: FormikInputs) => {
     if (!values.password) {
       errors.password = "Required";
     } else if (values.password.length > 20) {
@@ -19,7 +37,13 @@ export function useSign(isLoginAction: boolean) {
     ) {
       errors.email = "Invalid email address";
     }
-
+    if (!isLoginAction) {
+      if (!values.repeatPassword) {
+        errors.password = "Required";
+      } else if (values.repeatPassword !== values.password) {
+        errors.repeatPassword = "Password must be same";
+      }
+    }
     return errors;
   };
 
@@ -27,9 +51,10 @@ export function useSign(isLoginAction: boolean) {
     initialValues: {
       email: "",
       password: "",
+      repeatPassword: "",
     },
+    validate,
     onSubmit: async () => {
-      console.log(validate(formik.values), formik);
       try {
         await accessToApp({
           typeAccess: isLoginAction ? "login" : "register",

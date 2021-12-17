@@ -28,11 +28,10 @@ module.exports = {
       xl: "1921px",
     },
     variants: {
-      extend: {},
-    },
-    extend: {
-      animation: {
-        "pulse-slow": "bounce 1s ease-in infinite",
+      extend: {
+        animation: {
+          "pulse-slow": "bounce 1s ease-in infinite",
+        },
       },
     },
     plugins: [],
