@@ -21,6 +21,8 @@ module.exports = {
       black: {
         900: "#2C2C2C",
       },
+      red: "#BA2424",
+      link: "#0000EE",
     },
     screens: {
       sm: "640px",

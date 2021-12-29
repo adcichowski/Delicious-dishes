@@ -16,22 +16,21 @@ export function FormAuthView({ type }: { type: string }) {
       <h2 className="text-6xl text-center mb-4 font-medium">{type}</h2>
       <form onSubmit={formik.handleSubmit} className="w-full">
         <Input
-          labelText="Email"
+          labelText="Email:"
           name="email"
           type="text"
           onChange={formik.handleChange}
           value={formik.values.email}
+          error={formik?.errors?.email}
         />
-        {formik?.errors?.email}
-
         <Input
           name="password"
           type="password"
-          labelText="Password"
+          labelText="Password:"
           value={formik.values.password}
           onChange={formik.handleChange}
+          error={formik?.errors?.password}
         />
-        {formik?.errors?.password}
         {isLoginForm ? null : (
           <Input
             name="Repeat password"
@@ -39,12 +38,15 @@ export function FormAuthView({ type }: { type: string }) {
             labelText="Repeat password"
             value={formik.values.repeatPassword}
             onChange={formik.handleChange}
+            error={formik?.errors?.repeatPassword}
           />
         )}
-        <p>
-          If you have already account, just
+        <p className="mb-4">
+          {!isLoginForm
+            ? "If you have already account, just "
+            : "You can join to us by the link "}
           <Link href={isLoginForm ? "/register" : "/login"}>
-            <a className="underline text-green-400 font-bold underline text-xl ml-1 cursor-pointer">
+            <a className="underline font-bold underline text-xl ml-1 text-link cursor-pointer">
               {isLoginForm ? "Register" : "Sign In"}
             </a>
           </Link>

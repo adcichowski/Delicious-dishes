@@ -1,49 +1,38 @@
-import { useFormik } from "formik";
+import { ErrorMessage, useFormik } from "formik";
 import React from "react";
 import { supabase } from "lib/supabase/config";
 import { accessToApp } from "lib/supabase/utils";
+import { capFirstLetter } from "utils/utils";
 
-const setValidation = {
-  email: {
-    isRequired: true,
-  },
-  password: {
-    isRequired: true,
-  },
-  repeatPassword: (isLoginAction: boolean) => {
-    if (!isLoginAction)
-      return {
-        isRequired: true,
-      };
-  },
-};
+const VALIDATE_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/;
 interface FormikInputs {
   email: string;
   password: string;
-  reapeatPassword?: string;
+  repeatPassword: string;
 }
 export function useSign(isLoginAction: boolean) {
-  const validate = (values: FormikInputs, errors: FormikInputs) => {
-    if (!values.password) {
-      errors.password = "Required";
-    } else if (values.password.length > 20) {
-      errors.password = "Must be 20 characters or less";
-    }
+  const validate = (values: FormikInputs) => {
+    const errors = {
+      email: "",
+      password: "",
+      repeatPassword: "",
+    };
 
-    if (!values.email) {
-      errors.email = "Required";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-      errors.email = "Invalid email address";
+    if (!VALIDATE_EMAIL.test(values.email)) {
+      errors.email = "Invalid email adress";
     }
-    if (!isLoginAction) {
-      if (!values.repeatPassword) {
-        errors.password = "Required";
-      } else if (values.repeatPassword !== values.password) {
-        errors.repeatPassword = "Password must be same";
+    if (values.repeatPassword !== values.password && !isLoginAction) {
+      errors.repeatPassword = "Password must be same";
+    }
+    if (values.password.length < 11) {
+      errors.password = "Password is too short";
+    }
+    Object.keys(errors).forEach((validateInput) => {
+      const key = validateInput as keyof FormikInputs;
+      if (!values[key]) {
+        errors[key] = "Required field!";
       }
-    }
+    });
     return errors;
   };
 
@@ -61,7 +50,7 @@ export function useSign(isLoginAction: boolean) {
           user: formik.values,
         });
       } catch (e) {
-        console.log(e);
+        //TODO: Show modal or popup when the client got error
       }
     },
   });
