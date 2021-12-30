@@ -1,10 +1,15 @@
+import Head from "next/head";
 import React from "react";
 
 export default function Recipes() {
-  //TODO: Add view of recipe dishes
   return (
-    <div>
-      <h1>Recipes</h1>
-    </div>
+    <>
+      <Head>
+        <title>Delicious Dishes - All recipes</title>
+      </Head>
+      <div>
+        <h1>Recipes</h1>
+      </div>
+    </>
   );
 }
