@@ -19,7 +19,7 @@ a {
 }
 .bg-dishes {
   position: absolute;
-  width: 40%;
+  width: 50%;
   z-index: -1;
 }
 .girl-size {
@@ -27,24 +27,29 @@ a {
   height: auto;
   object-fit: fill;
 }
-@media only screen and (max-width: 839px) {
+@media only screen and (max-width: 799px) {
   .bg-dishes {
     width: 100%;
-    transform: translate(-50%, 20%);
   }
 }
-@media only screen and (min-width: 840px) {
+@media only screen and (min-width: 800px) {
   .bg-dishes {
     top: 52%;
-    right: -15%;
+    right: -25%;
     transform: translate(-50%, -50%);
   }
 }
-@media only screen and (min-width: 840px) {
+@media only screen and (min-width: 800px) {
   .bg-dots {
     background-image: url("../public/headerDots.png");
     background-repeat: no-repeat;
     background-size: 52%;
     background-position: -10rem center;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .bg-dishes {
+    width: 170%;
+    transform: translate(-25%, 5%);
   }
 }

@@ -21,7 +21,7 @@ const Home: NextPage = () => {
         <div>
           <HeaderSVG loginView={getLoginView} goToLogin={handleLoginView} />
         </div>
-        <div className="self-end md:self-center mt-8">
+        <div className="self-end md:self-center mt-8 md:pr-12">
           <h1 className="text-center font-semibold">
             <div className="md:text-6xl text-4xl">Delicious</div>
             <div className="md:text-9xl text-7xl">Dishes</div>
