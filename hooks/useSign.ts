@@ -12,17 +12,14 @@ interface FormikInputs {
 }
 export function useSign(isLoginAction: boolean) {
   const validate = (values: FormikInputs) => {
-    const errors = {
-      email: "",
-      password: "",
-      repeatPassword: "",
-    };
+    let errors: { email?: string; password?: string; repeatPassword?: string } =
+      {};
 
-    if (!VALIDATE_EMAIL.test(values.email)) {
+    if (VALIDATE_EMAIL.test(values.email)) {
       errors.email = "Invalid email adress";
     }
     if (values.repeatPassword !== values.password && !isLoginAction) {
-      errors.repeatPassword = "Password must be same";
+      errors.repeatPassword = "Passwords must be same";
     }
     if (values.password.length < 11) {
       errors.password = "Password is too short";
@@ -44,11 +41,18 @@ export function useSign(isLoginAction: boolean) {
     },
     validate,
     onSubmit: async () => {
+      console.log(isLoginAction ? "login" : "register");
       try {
         await accessToApp({
           typeAccess: isLoginAction ? "login" : "register",
           user: formik.values,
         });
+        console.log(
+          await accessToApp({
+            typeAccess: isLoginAction ? "login" : "register",
+            user: formik.values,
+          })
+        );
       } catch (e) {
         //TODO: Show modal or popup when the client got error
       }

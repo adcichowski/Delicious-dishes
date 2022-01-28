@@ -7,12 +7,12 @@ export async function accessToApp({
   typeAccess: "login" | "register";
   user: { email: string; password: string };
 }) {
-  const accessFunc = {
-    login: await supabase.auth.signIn(user),
-    register: await supabase.auth.signUp(user),
-  };
-  const callToSupabase = accessFunc[typeAccess];
-  if (callToSupabase.error?.status !== 200) {
-    throw callToSupabase.error?.message;
+  try {
+    if (typeAccess === "login") await supabase.auth.signIn(user);
+    if (typeAccess === "register") await supabase.auth.signUp(user);
+  } catch ({ message }) {
+    throw Error(
+      typeof message === "string" ? message : "Problem with access to database"
+    );
   }
 }

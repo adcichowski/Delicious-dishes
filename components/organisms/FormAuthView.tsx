@@ -1,8 +1,6 @@
-import { useFormik } from "formik";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Button } from "components/atoms/Button";
 import { Input } from "components/atoms/Input";
-import { createClient } from "@supabase/supabase-js";
 import { useSign } from "hooks/useSign";
 import { useLoginContext } from "context/LoginContext";
 import Link from "next/link";
@@ -33,9 +31,9 @@ export function FormAuthView({ type }: { type: string }) {
         />
         {isLoginForm ? null : (
           <Input
-            name="Repeat password"
+            name="repeatPassword"
             type="password"
-            labelText="Repeat password"
+            labelText="Repeat password:"
             value={formik.values.repeatPassword}
             onChange={formik.handleChange}
             error={formik?.errors?.repeatPassword}
